@@ -42,7 +42,7 @@
 											<div class="input-group-prepend">
 												<a
 													class="btn btn-light"
-													href={% url "add_cart" cart_item.product.id %}
+													href={% url "remove_cart" cart_item.product.id %}
 													id="button-plus"
 												>
 													<i class="fa fa-minus"></i>
@@ -71,7 +71,7 @@
 									<!-- price-wrap .// -->
 								</td>
 								<td class="text-right">
-									<a href="" class="btn btn-danger"> Remove</a>
+									<a href={% url "remove_item" cart_item.product.id %} class="btn btn-danger"> Remove</a>
 								</td>
 							</tr>
 							{% endfor %}
