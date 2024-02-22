@@ -3,6 +3,13 @@ from django.http import HttpResponse
 from .models import Product
 from category.models import Category
 from carts.views import _cart_id, CartItem
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+def getPaginator(request, products):
+    paginator = Paginator(products, 3)
+    page = request.GET.get('page')
+    paged_product = paginator.get_page(page)
+    return paged_product    
 
 def store(request, category_slug=None):
     categories = None
@@ -11,13 +18,15 @@ def store(request, category_slug=None):
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=categories, is_available=True)
+        paged_product = getPaginator(request, products)
         products_count = products.count()
     else:  
         products = Product.objects.all().filter(is_available=True)
+        paged_product = getPaginator(request, products)
         products_count = products.count()
     
     context = {
-        'products': products,
+        'products': paged_product,
         'products_count': products_count
     }
     
