@@ -29,10 +29,11 @@
 						<div class="row">
 							<div class="item-option-select">
 								<h6>Choose Color</h6>
-								<select name="color" class="form-control">
-									<option value="Silver">Silver</option>
-									<option value="Green">Green</option>
-									<option value="Yellow">Yellow</option>
+								<select name="color" class="form-control" require>
+									<option value="" disabled selected>Choose Color</option>
+									{% for i in single_product.variation_set.all %}
+									<option value={{i.variation_value}}>{{i.variation_value}}</option>
+									{% endfor %}
 								</select>
 							</div>
 						</div>
