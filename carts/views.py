@@ -52,7 +52,6 @@ def add_cart(request, product_id):
             id.append(item.id)
             
         if product_variation in ex_var_list:
-                # increase the cart item quantity
             index = ex_var_list.index(product_variation)
             item_id = id[index]
             item = CartItem.objects.get(product=product, id=item_id)
@@ -78,26 +77,30 @@ def add_cart(request, product_id):
 
 
 
-def remove_cart(request, product_id):
+def remove_cart(request, product_id, cart_item_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
     
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
+    try:
+        cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
+        
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except:
+        pass
     
     return redirect('cart')
 
     
     
     
-def remove_item(request, product_id):
+def remove_item(request, product_id, cart_item_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
+    cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
     cart_item.delete()
     
     return redirect('cart')
