@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% block branding %}
+{% load static %}
+<div class="col-lg-2 col-md-3 col-6">
+    <a href={% url "home" %} class="brand-wrap">
+        <img class="logo" src={% static "./images/logo.png" %}>
+    </a> <!-- brand-wrap.// -->
+</div>
+{% endblock branding %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+{% endblock %}

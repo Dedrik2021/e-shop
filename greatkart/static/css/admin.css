@@ -1,0 +1,44 @@
+#header {
+    background-color: #000;
+    color: #3166EB;
+    border-bottom: 1px solid #3166EB;
+}
+
+.breadcrumbs {
+    background-color: #000 !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+#changelist-filter h2 {
+    background-color: #000 !important;
+    border-bottom: 1px solid #fff !important;
+    text-align: center;
+}
+
+.submit-row input {
+    background-color: #000;
+    transition: all 0.3s;
+}
+
+.submit-row input:hover {
+    background-color: #3166EB;
+}
+
+.paginator input.default,
+.submit-row .default {
+    background-color: #3166EB !important;
+    transition: all 0.3s;
+}
+
+.paginator input.default,
+.submit-row .default:hover {
+    background-color: #888282 !important;
+}
+
+a:link, a:visited {
+    color: #fff;
+}
+
+caption {
+    background-color: #3166EB !important;
+}
