@@ -6,7 +6,8 @@
 
 .breadcrumbs {
     background-color: #000 !important;
-    border-bottom: 1px solid #fff !important;
+    border-bottom: 1px solid #3166EB !important;
+
 }
 
 #changelist-filter h2 {
@@ -41,4 +42,27 @@ a:link, a:visited {
 
 caption {
     background-color: #3166EB !important;
+}
+
+#changelist,
+#changelist-form,
+#toggle-nav-sidebar,
+#nav-sidebar,
+#main,
+#content-main,
+.content {
+    background-color: #000 !important;
+}
+
+tr {
+    background-color: #888282 !important;
+}
+
+#toggle-nav-sidebar,
+#nav-sidebar {
+    border-color: #3166EB !important;
+}
+
+.model-account.current-model th a {
+    color: #000 !important;
 }
