@@ -3,6 +3,7 @@ from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -136,6 +137,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
 
 
 
+@login_required(login_url="login")
 def checkout(request, total=0, quantity=0, cart_items=None):
     try:
         tax = 0
