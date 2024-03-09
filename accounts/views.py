@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 
@@ -57,18 +57,17 @@ def register(request):
     return render(request, "accounts/register.html", context)
 
 
+
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
             
         user = auth.authenticate(email=email, password=password)
-            
+        
         if user is not None:
             try:
-                cart = Cart.objects.filter(cart_id=_cart_id(request))
-                print('/////////', cart)
-                print('/////////', _cart_id(request))
+                cart = Cart.objects.get(cart_id=_cart_id(request))
                 is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
                 if is_cart_item_exists:
                     cart_item = CartItem.objects.filter(cart=cart)
