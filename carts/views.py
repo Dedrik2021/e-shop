@@ -23,7 +23,6 @@ def add_cart(request, product_id):
     product_variation = []
     
     if current_user.is_authenticated:
-        product_variation = []
         if request.method == 'POST':
             for item in request.POST:
                 key = item
@@ -74,7 +73,6 @@ def add_cart(request, product_id):
     
     # 
     else:
-        product_variation = []
         if request.method == 'POST':
             for item in request.POST:
                 key = item
