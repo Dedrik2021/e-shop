@@ -129,5 +129,11 @@ def payments(request):
         order_product.product_price = item.product.price
         order_product.ordered = True
         order_product.save()
+        
+        cart_item = CartItem.objects.get(id=item.id)
+        product_variation = cart_item.variations.all()
+        order_product = Order_Product.objects.get(id=order_product.id)
+        order_product.variations.set(product_variation)
+        order_product.save()
     
     return render(request, 'orders/payments.html')
