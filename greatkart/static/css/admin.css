@@ -1,4 +1,5 @@
-.related-widget-wrapper {
+.related-widget-wrapper,
+select[multiple] {
     width: 100% !important;
 }
 

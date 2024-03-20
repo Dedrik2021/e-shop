@@ -5,6 +5,7 @@ from carts.models import CartItem
 from .models import Order, Payment, Order_Product
 import datetime
 import json
+from store.models import Product
 
 
 def place_order(request, total=0, quantity=0):
@@ -135,5 +136,12 @@ def payments(request):
         order_product = Order_Product.objects.get(id=order_product.id)
         order_product.variations.set(product_variation)
         order_product.save()
+        
+        product = Product.objects.get(id=item.product_id)
+        product.stock -= item.quantity
+        product.save()
+        
+        
+    CartItem.objects.filter(user=request.user).delete()
     
     return render(request, 'orders/payments.html')
